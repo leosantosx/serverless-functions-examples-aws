@@ -1,0 +1,19 @@
+service: functions
+frameworkVersion: '2'
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+
+functions:
+  img-analyse:
+    handler: handler.analyse
+    # events: 
+    #   - http:
+    #       path: analyse
+    #       method: get
+          
