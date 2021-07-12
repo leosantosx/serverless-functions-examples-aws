@@ -3,8 +3,9 @@
 const awsSdk = require('aws-sdk')
 
 module.exports.translateText = async (event) => {
+  
   try {
-
+                      
     const { text } = event.queryStringParameters
     
     const params = {
@@ -20,10 +21,9 @@ module.exports.translateText = async (event) => {
 
     return {
       statusCode: 200,
-      text: TranslatedText
+      body: JSON.stringify({ text: TranslatedText })
     }
   } catch (error) {
-    console.log(error)
     return {
       statusCode: 500,
       body: 'Internal server error!'
