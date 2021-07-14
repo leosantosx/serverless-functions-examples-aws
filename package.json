@@ -6,5 +6,9 @@
   "license": "MIT",
   "devDependencies": {
     "serverless-offline": "^7.0.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.943.0",
+    "axios": "^0.21.1"
   }
 }

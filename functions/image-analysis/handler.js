@@ -1,20 +1,37 @@
 'use strict';
 
 const awsSdk = require('aws-sdk')
-const fs = require('fs')
+const fs = require('fs');
 
 async function recognizeImage(err, buffer){
-    if(err){
-      return console.log('Internal server error!')
-    }
     const reko = new awsSdk.Rekognition()
     
-    const result = await reko.detectLabels({
+    const { Labels } = await reko.detectLabels({
       Image: { Bytes: buffer },
       MaxLabels: 10,
     }).promise()
 
-    return console.log(result)
+    const names = Labels.map(result => result.Name)
+
+    const params = {
+      SourceLanguageCode: 'auto',
+      TargetLanguageCode: 'pt',
+      Text: names.join(' and ')
+    }
+
+    const translatorSVC = new awsSdk.Translate()
+    const { TranslatedText } = await translatorSVC
+                        .translateText(params)
+                        .promise()
+
+    const texts = TranslatedText.split(' e ')
+
+    for(const textIndex in texts){
+      const confidence = Labels[textIndex].Confidence.toFixed(2)
+      const nameInPortuguese = texts[textIndex]
+
+      console.log(`${confidence}% de ser do tipo ${nameInPortuguese}`)
+    }
 }
 
 module.exports.analyse = async (event) => {
