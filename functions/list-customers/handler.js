@@ -21,7 +21,7 @@ module.exports.customers = async (event) => {
     console.log(error);
     return {
       statusCode: 500,
-      body: JSON.stringify(error)// {message: 'Internal server error'}
+      body: JSON.stringify({message: 'Internal server error'})
     }
   }
 };
