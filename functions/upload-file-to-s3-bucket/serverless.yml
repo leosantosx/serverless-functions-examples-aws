@@ -4,10 +4,19 @@ frameworkVersion: '2'
 plugins:
  - serverless-offline
 
+custom:
+  bucket: test-upload20201221
+
 provider:
   name: aws
   runtime: nodejs12.x
   lambdaHashingVersion: 20201221
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:PutObject
+        - s3:PutObjectAcl
+      Resource: "*"
 
 functions:
   main:
