@@ -5,7 +5,7 @@ plugins:
  - serverless-offline
 
 custom:
-  bucket: test-upload20201221
+  bucket: bucketName
 
 provider:
   name: aws
