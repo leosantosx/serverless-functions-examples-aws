@@ -2,7 +2,7 @@
 
 const awsSdk = require('aws-sdk')
 
-module.exports.customers = async (event) => {
+module.exports.listCustomers = async () => {
 
   try{
 
@@ -25,3 +25,23 @@ module.exports.customers = async (event) => {
     }
   }
 };
+
+module.exports.saveCustomers = async event => {
+  try {
+  
+    return {
+      statusCode: 200,
+      body: event.body
+    }
+
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify(error)
+    }
+  }
+}
+
+module.exports.deleteCustomer = async event => {
+  return {}
+}

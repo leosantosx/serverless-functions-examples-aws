@@ -14,12 +14,21 @@ provider:
       Resource: "*"
 
 functions:
-  customers:
-    handler: handler.customers
+  listCustomers:
+    handler: handler.listCustomers
     events:
     - http:
         path: customers
         method: get
+  
+  saveCustomers:
+    handler: handler.saveCustomers
+    events:
+    - http:
+        path: customers
+        method: post
+  
+  
 
 resources:
   Resources:
