@@ -28,6 +28,9 @@ module.exports.listCustomers = async () => {
 
 module.exports.saveCustomers = async event => {
   try {
+    const parserBody = JSON.parse(event.body)
+    
+    const { name, age, gender, email, phone } = parserBody
   
     return {
       statusCode: 200,
