@@ -10,6 +10,7 @@
   "dependencies": {
     "aws-sdk": "^2.943.0",
     "axios": "^0.21.1",
-    "lambda-multipart-parser": "^1.0.1"
+    "lambda-multipart-parser": "^1.0.1",
+    "uuid": "^8.3.2"
   }
 }

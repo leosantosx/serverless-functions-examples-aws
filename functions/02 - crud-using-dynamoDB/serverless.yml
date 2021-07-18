@@ -12,24 +12,38 @@ provider:
       Action:
         - dynamodb:Scan
       Resource: "*"
+  environment:
+    TABLE_NAME: 'customers'
 
 functions:
   listCustomers:
-    handler: handler.listCustomers
+    handler: list.main
     events:
     - http:
         path: customers
         method: get
   
-  saveCustomers:
-    handler: handler.saveCustomers
+  createCustomers:
+    handler: create.main
     events:
     - http:
         path: customers
         method: post
-  
-  
 
+  deleteCustomers:
+    handler: delete.main
+    events:
+    - http:
+        path: customers/{id}
+        method: delete
+
+  updateCustomers:
+    handler: update.main
+    events:
+    - http:
+        path: customers/{id}
+        method: put
+  
 resources:
   Resources:
     usersTable:
