@@ -17,6 +17,8 @@ provider:
         - s3:PutObject
         - s3:PutObjectAcl
       Resource: "*"
+  environment:
+    BUCKET_NAME: 'Your bucket name'
 
 functions:
   main:

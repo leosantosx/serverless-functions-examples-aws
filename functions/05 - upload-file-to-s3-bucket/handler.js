@@ -7,7 +7,7 @@ class Handler{
 
   async sendFileToS3({ filename, buffer }){
     const status = await this.s3.putObject({
-      Bucket: '',
+      Bucket: process.env.BUCKET_NAME,
       Body: buffer,
       Key: filename
     }).promise()
@@ -29,8 +29,7 @@ class Handler{
       })
 
       return{
-        statusCode: 200,
-        body: 'Ok'
+        statusCode: 204,
       }
     }catch(error){
       console.log(error);
